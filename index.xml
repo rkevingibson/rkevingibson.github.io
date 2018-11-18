@@ -6,19 +6,10 @@
     <description>Recent content on Kevin Gibson</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Thu, 15 Nov 2018 22:43:49 -0800</lastBuildDate>
+    <lastBuildDate>Fri, 10 Feb 2017 12:22:17 -0500</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Clothsim1</title>
-      <link>/blog/clothsim1/</link>
-      <pubDate>Thu, 15 Nov 2018 22:43:49 -0800</pubDate>
-      
-      <guid>/blog/clothsim1/</guid>
-      <description>  ##Hello Markdeep ## Hello World  </description>
-    </item>
     
     <item>
       <title>Command Streams with Lambda Functions</title>
@@ -30,32 +21,12 @@
     </item>
     
     <item>
-      <title>projects</title>
-      <link>/projects/</link>
-      <pubDate>Thu, 18 Aug 2016 13:06:45 -0400</pubDate>
-      
-      <guid>/projects/</guid>
-      <description>Below are a few projects that I have worked on in the past, including research and course projects.
-Facial Recognition My final thesis project for undergrad. My group implemented a variety of facial recognition strategies, as well as a novel modification of the Eigenfaces approach. I built a system for scraping Facebook to generate a database based on photo tags, using openCV to extract the faces. Made for a fun demo, being able to recognize people in the audience.</description>
-    </item>
-    
-    <item>
       <title>about</title>
       <link>/about/</link>
       <pubDate>Thu, 18 Aug 2016 13:01:22 -0400</pubDate>
       
       <guid>/about/</guid>
-      <description>I am a PhD student at the University of Toronto working in the Dynamic Graphics Project (DGP), under the supervision of Karan Singh. I graduated from Queen&amp;rsquo;s University in 2014 with a Bachelor&amp;rsquo;s degree in Mathematics and Engineering, in the Computing and Communications option.
-I&amp;rsquo;m interested in a variety of areas of computer graphics, particularly in the creation of more convincing digital humans. Outside of research I&amp;rsquo;m also interested in real time graphics and animation, as well as music.</description>
-    </item>
-    
-    <item>
-      <title>Introduction</title>
-      <link>/blog/introduction/</link>
-      <pubDate>Thu, 18 Aug 2016 12:52:10 -0400</pubDate>
-      
-      <guid>/blog/introduction/</guid>
-      <description>I&amp;rsquo;m overdue to start writing, so I&amp;rsquo;m going to start adding some blog posts here. I don&amp;rsquo;t know that there will be a focus beyond &amp;ldquo;graphics programming,&amp;rdquo; but really I&amp;rsquo;ll post anything that I feel is interesting. They&amp;rsquo;ll likely be mainly technical articles, and for the first batch I&amp;rsquo;m planning a series of posts on implementing some physically based shaders, building on the content from the Siggraph courses on Physically Based Rendering.</description>
+      <description>I am a software engineer at Microsoft, working primarily on Spatial Mapping for Hololens. I got my Masters in Computer Science from the University of Toronto in 2016, and my graduated from the Mathematics and Engineering program at Queen&amp;rsquo;s University in 2014. Originally from Toronto, I now live in Seattle. I&amp;rsquo;m interested in a variety of areas of computer graphics, including geometry processing, rendering, and physical simulation. Outside of research I&amp;rsquo;m also interested in music, good beer, and cooking.</description>
     </item>
     
   </channel>
