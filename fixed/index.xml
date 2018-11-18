@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fixed on Kevin Gibson</title>
+    <link>/fixed/</link>
+    <description>Recent content in Fixed on Kevin Gibson</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 18 Aug 2016 13:06:45 -0400</lastBuildDate>
+    
+	<atom:link href="/fixed/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>projects</title>
+      <link>/projects/</link>
+      <pubDate>Thu, 18 Aug 2016 13:06:45 -0400</pubDate>
+      
+      <guid>/projects/</guid>
+      <description>Below are a few projects that I have worked on in the past, including research and course projects.
+Facial Recognition My final thesis project for undergrad. My group implemented a variety of facial recognition strategies, as well as a novel modification of the Eigenfaces approach. I built a system for scraping Facebook to generate a database based on photo tags, using openCV to extract the faces. Made for a fun demo, being able to recognize people in the audience.</description>
+    </item>
+    
+    <item>
+      <title>about</title>
+      <link>/about/</link>
+      <pubDate>Thu, 18 Aug 2016 13:01:22 -0400</pubDate>
+      
+      <guid>/about/</guid>
+      <description>I am a PhD student at the University of Toronto working in the Dynamic Graphics Project (DGP), under the supervision of Karan Singh. I graduated from Queen&amp;rsquo;s University in 2014 with a Bachelor&amp;rsquo;s degree in Mathematics and Engineering, in the Computing and Communications option.
+I&amp;rsquo;m interested in a variety of areas of computer graphics, particularly in the creation of more convincing digital humans. Outside of research I&amp;rsquo;m also interested in real time graphics and animation, as well as music.</description>
+    </item>
+    
+  </channel>
+</rss>
