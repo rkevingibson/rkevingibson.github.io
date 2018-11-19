@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on Kevin Gibson&#39;s personal site</title>
-    <link>http://rkevingibson.github.io/blog/</link>
+    <link>https://rkevingibson.github.io/blog/</link>
     <description>Recent content in Blog on Kevin Gibson&#39;s personal site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 18 Nov 2018 16:29:53 -0800</lastBuildDate>
     
-	<atom:link href="http://rkevingibson.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://rkevingibson.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Cloth Simulation Part 1: Mass-Spring Systems</title>
-      <link>http://rkevingibson.github.io/blog/cloth-simulation-part-1-mass-spring-systems/</link>
+      <link>https://rkevingibson.github.io/blog/cloth-simulation-part-1-mass-spring-systems/</link>
       <pubDate>Sun, 18 Nov 2018 16:29:53 -0800</pubDate>
       
-      <guid>http://rkevingibson.github.io/blog/cloth-simulation-part-1-mass-spring-systems/</guid>
+      <guid>https://rkevingibson.github.io/blog/cloth-simulation-part-1-mass-spring-systems/</guid>
       <description></description>
     </item>
     
