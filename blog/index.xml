@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blog on Kevin Gibson</title>
-    <link>/blog/</link>
-    <description>Recent content in Blog on Kevin Gibson</description>
+    <title>Blog on Kevin Gibson&#39;s personal site</title>
+    <link>http://rkevingibson.github.io/blog/</link>
+    <description>Recent content in Blog on Kevin Gibson&#39;s personal site</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-US</language>
-    <lastBuildDate>Fri, 10 Feb 2017 12:22:17 -0500</lastBuildDate>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 18 Nov 2018 16:29:53 -0800</lastBuildDate>
     
-	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://rkevingibson.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Command Streams with Lambda Functions</title>
-      <link>/blog/command-streams-with-lambda-functions/</link>
-      <pubDate>Fri, 10 Feb 2017 12:22:17 -0500</pubDate>
+      <title>Cloth Simulation Part 1: Mass-Spring Systems</title>
+      <link>http://rkevingibson.github.io/blog/cloth-simulation-part-1-mass-spring-systems/</link>
+      <pubDate>Sun, 18 Nov 2018 16:29:53 -0800</pubDate>
       
-      <guid>/blog/command-streams-with-lambda-functions/</guid>
-      <description>I&amp;rsquo;ve been working on a rendering backend to make creating quick-and-dirty OpenGL projects easier - basically a simple game engine that I&amp;rsquo;m comfortable breaking apart and toying with. Right now I&amp;rsquo;m splitting off my OpenGL backend to run on a separate thread, so that while the engine is simulating frame N+1, the render thread is drawing frame N. Since I don&amp;rsquo;t want to have a massive sync point between the two threads, and I don&amp;rsquo;t want to surround everything in mutexes, I&amp;rsquo;ll need to have two copies of a lot of data: one that is owned by the render thread, and one that is owned by the game thread.</description>
+      <guid>http://rkevingibson.github.io/blog/cloth-simulation-part-1-mass-spring-systems/</guid>
+      <description></description>
     </item>
     
   </channel>

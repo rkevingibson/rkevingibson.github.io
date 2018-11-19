@@ -3,40 +3,34 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/blog/command-streams-with-lambda-functions/</loc>
-    <lastmod>2017-02-10T12:22:17-05:00</lastmod>
+    <loc>http://rkevingibson.github.io/about/</loc>
+    <lastmod>2018-11-18T16:32:06-08:00</lastmod>
   </url>
   
   <url>
-    <loc>/about/</loc>
-    <lastmod>2016-08-18T13:01:22-04:00</lastmod>
+    <loc>http://rkevingibson.github.io/blog/cloth-simulation-part-1-mass-spring-systems/</loc>
+    <lastmod>2018-11-18T16:29:53-08:00</lastmod>
   </url>
   
   <url>
-    <loc>/blog/</loc>
-    <lastmod>2017-02-10T12:22:17-05:00</lastmod>
+    <loc>http://rkevingibson.github.io/blog/</loc>
+    <lastmod>2018-11-18T16:29:53-08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/</loc>
+    <loc>http://rkevingibson.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/fixed/</loc>
-    <lastmod>2016-08-18T13:01:22-04:00</lastmod>
+    <loc>http://rkevingibson.github.io/</loc>
+    <lastmod>2018-11-18T16:32:06-08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/</loc>
-    <lastmod>2017-02-10T12:22:17-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
+    <loc>http://rkevingibson.github.io/tags/</loc>
     <priority>0</priority>
   </url>
   

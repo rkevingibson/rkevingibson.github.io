@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Kevin Gibson</title>
-    <link>/tags/</link>
-    <description>Recent content in Tags on Kevin Gibson</description>
+    <title>Tags on Kevin Gibson&#39;s personal site</title>
+    <link>http://rkevingibson.github.io/tags/</link>
+    <description>Recent content in Tags on Kevin Gibson&#39;s personal site</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-US</language>
+    <language>en-us</language>
     
-	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://rkevingibson.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
