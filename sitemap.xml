@@ -3,8 +3,19 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://rkevingibson.github.io/blog/neural-networks-as-ordinary-differential-equations/</loc>
+    <lastmod>2018-12-11T18:46:36-08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://rkevingibson.github.io/about/</loc>
     <lastmod>2018-11-18T16:32:06-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rkevingibson.github.io/blog/</loc>
+    <lastmod>2018-12-11T18:46:36-08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -14,7 +25,7 @@
   
   <url>
     <loc>https://rkevingibson.github.io/</loc>
-    <lastmod>2018-11-18T16:32:06-08:00</lastmod>
+    <lastmod>2018-12-11T18:46:36-08:00</lastmod>
     <priority>0</priority>
   </url>
   

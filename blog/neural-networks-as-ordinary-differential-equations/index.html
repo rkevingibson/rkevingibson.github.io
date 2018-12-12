@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Kevin Gibson">
+<meta name="description" content="Recently I found a paper being presented at NeurIPS this year, entitled Neural Ordinary Differential Equations, written by Ricky Chen, Yulia Rubanova, Jesse Bettencourt, and David Duvenaud from the University of Toronto. The core idea is that certain types of neural networks are analogous to a discretized differential equation, so maybe using off-the-shelf differential equation solvers will help get better results. This led me down a bit of a rabbit hole of papers that I found very interesting, so I thought I would share a short summary/view-from-30,000 feet on this idea.">
+
+<meta property="og:title" content="Neural networks as Ordinary Differential Equations" />
+<meta property="og:description" content="Recently I found a paper being presented at NeurIPS this year, entitled Neural Ordinary Differential Equations, written by Ricky Chen, Yulia Rubanova, Jesse Bettencourt, and David Duvenaud from the University of Toronto. The core idea is that certain types of neural networks are analogous to a discretized differential equation, so maybe using off-the-shelf differential equation solvers will help get better results. This led me down a bit of a rabbit hole of papers that I found very interesting, so I thought I would share a short summary/view-from-30,000 feet on this idea." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rkevingibson.github.io/blog/neural-networks-as-ordinary-differential-equations/" /><meta property="article:published_time" content="2018-12-11T18:46:36-08:00"/>
+<meta property="article:modified_time" content="2018-12-11T18:46:36-08:00"/>
+
+
+<title>
+
+
+     Neural networks as Ordinary Differential Equations 
+
+</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
+<link rel="canonical" href="https://rkevingibson.github.io/blog/neural-networks-as-ordinary-differential-equations/">
+
+
+
+<script type="text/javascript">
+    var baseURL = 'https:\/\/rkevingibson.github.io\/';
+    var host = baseURL.substring(0, baseURL.length - 1).replace(/\//g, '');
+    if ((host === window.location.host) && (window.location.protocol !== 'https:')) {
+        window.location.protocol = 'https:';
+    }
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    <link rel="stylesheet" href="https://rkevingibson.github.io/css/reset.css">
+    <link rel="stylesheet" href="https://rkevingibson.github.io/css/pygments.css">
+    <link rel="stylesheet" href="https://rkevingibson.github.io/css/main.css">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://rkevingibson.github.io/img/leaf.ico"
+
+>
+
+
+
+
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+            <a href="https://rkevingibson.github.io/"><div class="name">Kevin Gibson</div></a>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-blog"><a href="https://rkevingibson.github.io/blog/"><span>Blog</span></a></li>
+                    
+                        <li class="nav-about"><a href="https://rkevingibson.github.io/about/"><span>About</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+        
+            <a href="//github.com/rkevingibson" target="_blank" rel="noopener"><img class="icon" src="https://rkevingibson.github.io/img/github.svg" alt="github" /></a>
+        
+
+        
+
+        
+            <a href="//twitter.com/kevingibson92" target="_blank" rel="noopener"><img class="icon" src="https://rkevingibson.github.io/img/twitter.svg" alt="twitter" /></a>
+        
+
+	
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/rkevingibson" target="_blank" rel="noopener"><img class="icon" src="https://rkevingibson.github.io/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//instagram.com/rkevingibson" target="_blank" rel="noopener"><img class="icon" src="https://rkevingibson.github.io/img/instagram.svg" alt="instagram" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="mailto:rkevingibson@gmail.com"><img class="icon" src="https://rkevingibson.github.io/img/email.svg" alt="email" /></a>
+        
+
+        
+
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Neural networks as Ordinary Differential Equations
+
+</div>
+
+                    <div class="initials"><a href="https://rkevingibson.github.io/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Tue Dec 11 2018 18:46:36 PST'>Dec 11, 2018</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>7 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                <p>Recently I found a paper being presented at NeurIPS this year, entitled <a href="https://arxiv.org/abs/1806.07366">Neural Ordinary Differential Equations</a>, written by Ricky Chen, Yulia Rubanova, Jesse Bettencourt, and David Duvenaud from the University of Toronto. The core idea is that certain types of neural networks are analogous to a discretized differential equation, so maybe using off-the-shelf differential equation solvers will help get better results. This led me down a bit of a rabbit hole of papers that I found very interesting, so I thought I would share a short summary/view-from-30,000 feet on this idea.</p>
+
+<p>Typically, we think about neural networks as a series of discrete layers, each one taking in a previous state vector <span  class="math">\( \mathbf{h}_n \)</span> and producing a new state vector <span  class="math">\( \mathbf{h}_{n+1} = F(\mathbf{h}_{n}) \)</span>. Here, let's assume that each layer is the same width (e.g. <span  class="math">\( \mathbf{h}_{n} \)</span> and <span  class="math">\( \mathbf{h}_{n+1} \)</span> have the same dimension, for every <span  class="math">\( n \)</span>). Note that we don't particularly care about what <span  class="math">\(F\)</span> looks like, but typically it's something like <span  class="math">\(F(x) = \sigma(\sum_{i}\theta_i x_i)\)</span>, where <span  class="math">\(\sigma\)</span> is an activation function (e.g. <a href="https://en.wikipedia.org/wiki/Rectifier_(neural_networks)">relu</a> or a <a href="https://en.wikipedia.org/wiki/Logistic_function">sigmoid</a>), and <span  class="math">\(\theta\)</span> is a vector of parameters we're learning. This core formulation has some problems - notably, adding more layers, while theoretically increasing the ability of the network to learn, can actually <em>decrease</em> the accuracy of it, both in training and test results.</p>
+
+<p>This problem was adressed by <a href="https://arxiv.org/pdf/1512.03385.pdf">Deep Residual Learning</a>, from Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun out of Microsoft Reasearch. The idea in a nutshell is to learn a function of the difference between layers: <span  class="math">\( \mathbf{h}_{n+1} = F(\mathbf{h}_n) + \mathbf{h}_n \)</span>. In the paper, they show this simple transformation in what you're learning allows the networks to keep improving as they add more layers. To me, this reminds me of <a href="https://en.wikipedia.org/wiki/Delta_encoding">delta encoding</a>, in which you represent a stream of data as a series of changes from the previous state. This can make certain types of data much more suitable to compression (see, e.g. <a href="https://gafferongames.com/post/snapshot_compression/">this article</a> from Glenn Fiedler on compressing physics data to send over a network). It makes some kind of sense that if delta encoding can make data easier to compress, it could also make it easier to represent for a neural network.</p>
+
+<h3 id="eulers-method-and-residual-networks">Euler's method and residual networks</h3>
+
+<p>But how do residual networks relate to differential equations? Suppose we have some constant that we'll call <span  class="math">\( \Delta t \in \mathbb{R}\)</span>. Then we can write the state update of our neural network as</p>
+
+<p><span  class="math">\[ 
+\begin{aligned}
+\mathbf{h}_{t+1} &= F(\mathbf{h}_t) + \mathbf{h}_t \\ \\
+ &= \frac{\Delta t}{\Delta t} F(\mathbf{h}_t) + \mathbf{h}_t \\ \\
+ &= \Delta t G(\mathbf{h}_t) + \mathbf{h}_t
+\end{aligned}
+\]</span></p>
+
+<p>where now we're learning <span  class="math">\( G(\mathbf{h}_t) = F(\mathbf{h}_t)/\Delta t + \mathbf{h}_t \)</span>. If you have experience with differential equations, this formulation looks very familiar - it is a single step of <a href="https://en.wikipedia.org/wiki/Euler_method">Euler's method</a> for solving ordinary differential equations. It seems this was first noticed by Weinan E in <a href="https://link.springer.com/article/10.1007/s40304-017-0103-z">A proposal on Machine Learning via Dynamical Systems</a>, and expanded upon by Yiping Lu et al. in <a href="https://arxiv.org/pdf/1710.10121.pdf">Beyond Finite Layer Neural Networks</a>. However, Lu et al. continue to treat the network as a series of discrete steps, and use a discrete solver with fixed timesteps to come up with a novel neural network architecture. The reason for this is that we need to be able to train the networks, and it's not really clear how to &quot;learn&quot; a differential system. Chen, Rubanova, Bettencourt and Duvenaud solve this problem by using some clever math which enables them to compute the gradients they need for backpropagation.</p>
+
+<h3 id="evaluating-odes">Evaluating ODEs</h3>
+
+<p>Before we get to that, let's look at what we're trying to solve. If we consider a layer of our neural network to be doing a step of Euler's method, then we can model our system by the differential equation</p>
+
+<p><span  class="math">\[ \frac{d \mathbf{h}(t)}{dt} = G(\mathbf{h}(t), t, \theta) \]</span></p>
+
+<p>Here we've made explicit <span  class="math">\(G\)</span>'s dependency on <span  class="math">\(t\)</span>, as well as some parameters <span  class="math">\(\theta\)</span> which we will train on. In this formulation, the output of our &quot;network&quot; is the state <span  class="math">\(\mathbf{h}(t_1)\)</span> at some time <span  class="math">\(t_1\)</span>. Therefore, if we know how to describe the function <span  class="math">\(G\)</span>, we can use any number of off-the-shelf ODE solvers to evaluate the neural network.</p>
+
+<p><span  class="math">\[ \mathbf{h}(t_1) = \text{ODESolve}(\mathbf{h}(t_0), G, t_0, t_1, \theta) \]</span></p>
+
+<p>There is a ton of research on different methods that can be used as our ODESolve function, but for now we'll treat it as a black box. What matters is that if you substitute in Euler's method, you get exactly the residual state update from above, with</p>
+
+<p><span  class="math">\[ \text{ODESolve}(\mathbf{h}(t_0), G, t_0, t_1, \theta) = \mathbf{h}(t_0) + (t_1 - t_0)G(\mathbf{h}(t_0), t_0, \theta)\]</span></p>
+
+<p>However, we don't need to limit ourselves to Euler's method, and in fact will do much better if we use more modern approaches.</p>
+
+<h3 id="training-the-beast">Training the beast</h3>
+
+<p>So how to train it? Suppose we have a loss function</p>
+
+<p><span  class="math">\[ L(h(t_1)) = L(\text{ODESolve}(\mathbf{h}(t_0), G, t_0, t_1, \theta))\]</span></p>
+
+<p>To optimize <span  class="math">\(L\)</span>, we require gradients with respect to its parameters <span  class="math">\(\mathbf{h}(t)\)</span> (the state of our system at time <span  class="math">\(t\)</span>), <span  class="math">\(t\)</span> (our &quot;time&quot; variable, which is sort of a continuous analog to depth), and <span  class="math">\(\theta\)</span>, our training parameters. <a href="https://cs.stanford.edu/~ambrad/adjoint_tutorial.pdf">The adjoint method</a> describes a way to come up with this. The adjoint method is a neat trick which uses a simple substitution of variables to make solving certain linear systems easier. Part of the reason this paper grabbed my eye is because I've seen the adjoint method before, in a completely unrelated area: fluid simulation! In <a href="http://grail.cs.washington.edu/projects/control/fluidAdjoint.pdf">this</a> paper from McNamara et al., they make controlling a fluid simulation easier by using the adjoint method to efficiently compute some gradients with respect to user controlled parameters. That certainly sounds similar to our problem.</p>
+
+<p>So what is the adjoint method? Suppose we have 2 known matrices <span  class="math">\(A\)</span> and <span  class="math">\(C\)</span>, and an unknown vector <span  class="math">\(\mathbf{u}\)</span> and we would like to compute a product</p>
+
+<p><span  class="math">\[\mathbf{u}^{\intercal}B \text{ such that } AB=C\]</span></p>
+
+<p>We could first solve the linear system to find the unknown matrix <span  class="math">\(B\)</span>, then compute the product, but solving the linear system could be expensive.
+Instead, let's solve a different problem. Let's find a vector <span  class="math">\(\mathbf{v}\)</span> and compute</p>
+
+<p><span  class="math">\[\mathbf{v}^{\intercal}C \text{ such that } A^{\intercal}\mathbf{v}=\mathbf{u}\]</span></p>
+
+<p>We can show that these are in fact the same problem:</p>
+
+<p><span  class="math">\[\mathbf{v}^{\intercal}C = \mathbf{v}^{\intercal}AB = (A^{\intercal}\mathbf{v})^{\intercal}B = \mathbf{u}^{\intercal}B\]</span></p>
+
+<p>Through this transformation, we've reduced the problem from solving for a matrix, and reduced it to solving for a vector. This can be a big computational win! So how do we use it to train networks? I'm not going to go into the complete details here as it's slightly involved, but Appendix B in the paper has the complete derivation.
+In brief, we define the adjoint state as</p>
+
+<p><span  class="math">\[ a(t) = -\partial L / \partial \mathbf{h}(t) \]</span></p>
+
+<p>And we can describe its dynamics via</p>
+
+<p><span  class="math">\[ \frac{da(t)}{dt} = - a(t)^{\intercal} \frac{\partial G(\mathbf{h}(t), t, \theta)}{\partial \mathbf{h}} \]</span></p>
+
+<p>We can compute the derivative of <span  class="math">\(G\)</span> with respect to <span  class="math">\(\mathbf{h}\)</span> already - we compute this gradient during backpropagation of traditional neural networks. With this, we can then compute <span  class="math">\(a(t)\)</span> by using another call to an ODE solver. There is one other derivative, <span  class="math">\(dL/d\theta\)</span>, that can be computed similarly. The paper shows that we can wrap up all of these ODE solves into a single call to an ODE solver, which computes all the necessary gradients for training the system.</p>
+
+<h3 id="whats-the-point">What's the point?</h3>
+
+<p>Why do we want to do this? According to the paper, we're able to train a model with much less memory, with fewer parameters, and we are able to backpropagate more efficiently. All of these seem like good things! Modern ODE solvers are also adaptive, and can do more work only when needed to get an accurate solution. In the paper they show an experiment where the number of function evaluations that the ODE solver does increases with the number of training epochs - effectively, the system can quickly reach a rough solution, then take more time to refine the training.</p>
+
+<hr>
+
+<p><figure><img src="../../img/ode_networks_1.png" alt="illustration of an ode network compared to a residual network" title="An example from the paper showing how using an ode solver can adaptively evaluate the function. Circles represent function evaluations."><figcaption>An example from the paper showing how using an ode solver can adaptively evaluate the function. Circles represent function evaluations.</figcaption></figure></p>
+
+<hr>
+
+<p>I think the most interesting aspect is that treating our system like a continuous time model, allows us to predict continuous time systems. They show a way to take data which arrives at arbitrary times, rather than at fixed intervals, and they can predict the output at arbitrary future times. They test this on fairly simple synthetic data, predicting trajectories of spirals, but get really nice results. I definitely want to see more of this type of work in the future, on larger real-world problems, to see how it does. Being able to draw on the &gt; 100 years of research in solving differential equations could be very useful for a young field like deep learning, and hey, I just find the math neat.</p>
+
+                <br>
+                
+                <p class="back-to-posts"><a href="https://rkevingibson.github.io/blog">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+
+<script>renderMathInElement(document.body);</script>
+</body>
+</html>
+
