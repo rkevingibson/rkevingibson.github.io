@@ -1,6 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://rkevingibson.github.io/blog/</loc>
+    <lastmod>2018-12-11T18:46:36-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rkevingibson.github.io/</loc>
+    <lastmod>2018-12-11T18:46:36-08:00</lastmod>
+  </url>
   
   <url>
     <loc>https://rkevingibson.github.io/blog/neural-networks-as-ordinary-differential-equations/</loc>
@@ -13,25 +23,11 @@
   </url>
   
   <url>
-    <loc>https://rkevingibson.github.io/blog/</loc>
-    <lastmod>2018-12-11T18:46:36-08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://rkevingibson.github.io/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://rkevingibson.github.io/</loc>
-    <lastmod>2018-12-11T18:46:36-08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://rkevingibson.github.io/tags/</loc>
-    <priority>0</priority>
   </url>
   
 </urlset>

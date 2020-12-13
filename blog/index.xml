@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on Kevin Gibson&#39;s personal site</title>
@@ -6,11 +6,7 @@
     <description>Recent content in Blog on Kevin Gibson&#39;s personal site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 11 Dec 2018 18:46:36 -0800</lastBuildDate>
-    
-	<atom:link href="https://rkevingibson.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 11 Dec 2018 18:46:36 -0800</lastBuildDate><atom:link href="https://rkevingibson.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Neural networks as Ordinary Differential Equations</title>
       <link>https://rkevingibson.github.io/blog/neural-networks-as-ordinary-differential-equations/</link>
